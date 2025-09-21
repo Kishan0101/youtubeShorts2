@@ -1,0 +1,9 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+cloudinary==1.37.0
+youtube-transcript-api==0.6.1
+yt-dlp==2023.10.13
+moviepy==1.0.3
+opencv-python==4.8.1.78
+numpy==1.24.3
+pydantic==2.5.0
