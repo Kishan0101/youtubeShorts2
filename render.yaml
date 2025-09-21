@@ -2,8 +2,9 @@ services:
   - type: web
     name: youtube-short-generator
     env: python
-    buildCommand: apt-get update && apt-get install -y imagemagick fonts-noto && pip install --no-cache-dir setuptools==65.5.1 && pip install --no-cache-dir -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    buildCommand: apt-get update && apt-get install -y python3.9 python3.9-dev python3.9-venv libmagickwand-dev fonts-noto && python3.9 -m ensurepip && python3.9 -m pip install --no-cache-dir setuptools==65.5.1 && python3.9 -m pip install --no-cache-dir -r requirements.txt
+    startCommand: python3.9 -m uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: CLOUDINARY_CLOUD_NAME
         value: djm2brvkw

@@ -34,7 +34,7 @@ FONT_MAPPING = {
 # Try to configure ImageMagick with the correct binary for Render
 try:
     change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/magick"})
-    print("ImageMagick configured successfully.")
+    print("ImageMagick configured successfully at /usr/bin/magick.")
 except Exception as e:
     print(f"Warning: Failed to configure ImageMagick: {e}. Text overlays may be skipped.")
 
