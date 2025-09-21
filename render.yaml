@@ -3,8 +3,14 @@ services:
     name: youtube-short-generator
     env: python
     plan: free
-    buildCommand: apt-get update && apt-get install -y python3.9 python3.9-dev python3.9-venv libmagickwand-dev fonts-noto && python3.9 -m ensurepip && python3.9 -m pip install --no-cache-dir setuptools==65.5.1 && python3.9 -m pip install --no-cache-dir -r requirements.txt
-    startCommand: python3.9 -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    buildCommand: |
+      apt-get update && apt-get install -y python3.9 python3.9-dev python3.9-venv libmagickwand-dev fonts-noto
+      python3.9 -m venv /opt/render/project/src/.venv
+      . /opt/render/project/src/.venv/bin/activate
+      python3.9 -m ensurepip
+      python3.9 -m pip install --no-cache-dir setuptools==65.5.1
+      python3.9 -m pip install --no-cache-dir -r requirements.txt
+    startCommand: /opt/render/project/src/.venv/bin/python3.9 -m uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: CLOUDINARY_CLOUD_NAME
         value: djm2brvkw
@@ -14,3 +20,5 @@ services:
         value: _u029saczuQhse5atn8ogTrVy3Q
       - key: PYTHON_VERSION
         value: 3.9
+      - key: PYTHONUNBUFFERED
+        value: "1"
