@@ -28,13 +28,13 @@ MIN_SHORT_LENGTH = 30
 SHORT_RATIO = (9, 16)
 FONT_MAPPING = {
     'en': 'DejaVu-Sans',
-    'hi': 'Noto-Sans-Devanagari'  # Use Noto Sans Devanagari for Hindi, available on Linux
+    'hi': 'Noto-Sans-Devanagari'  # Use Noto Sans Devanagari for Hindi
 }
 
 # Try to configure ImageMagick with the correct binary for Render
 try:
-    # Use /usr/bin/magick (standard on modern Linux systems like Render)
     change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/magick"})
+    print("ImageMagick configured successfully.")
 except Exception as e:
     print(f"Warning: Failed to configure ImageMagick: {e}. Text overlays may be skipped.")
 
@@ -284,7 +284,7 @@ class VideoProcessor:
         try:
             test_clip = TextClip("test", fontsize=12, color='white', font='DejaVu-Sans')
             test_clip.close()
-            print("ImageMagick is available.")
+            print("ImageMagick is available for text overlays.")
             return True
         except Exception as e:
             print(f"ImageMagick not available: {e}. Text overlays will be skipped.")
